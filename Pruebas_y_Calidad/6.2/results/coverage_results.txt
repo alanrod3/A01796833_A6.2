@@ -1,0 +1,11 @@
+Name                                              Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------
+Pruebas_y_Calidad/6.2/source/customer.py             34      3    91%   13-15
+Pruebas_y_Calidad/6.2/source/file_manager.py         17      2    88%   25-26
+Pruebas_y_Calidad/6.2/source/hotel.py                38      4    89%   13-16
+Pruebas_y_Calidad/6.2/source/reservation.py          24      6    75%   13-15, 42-44
+Pruebas_y_Calidad/6.2/tests/test_customer.py         44      4    91%   25, 27, 60, 66
+Pruebas_y_Calidad/6.2/tests/test_hotel.py            46      4    91%   28, 30, 65, 76
+Pruebas_y_Calidad/6.2/tests/test_reservation.py      37      6    84%   25, 27, 38-40, 64
+-------------------------------------------------------------------------------
+TOTAL                                               240     29    88%
