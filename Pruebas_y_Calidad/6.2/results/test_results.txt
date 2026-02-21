@@ -1,0 +1,9 @@
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.002s
+
+OK
+Hotel: Hotel Test, Ubicación: CDMX
+Error loading ../data/hotels.json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+Hotel: Nuevo Nombre, Ubicación: Cancun
+Error loading ../data/reservations.json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)

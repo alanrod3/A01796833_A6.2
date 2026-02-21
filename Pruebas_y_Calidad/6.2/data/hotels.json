@@ -1,0 +1,16 @@
+[
+  {
+    "hotel_id": 1,
+    "name": "Grand Hotel",
+    "location": "Mexico City",
+    "rooms": 100,
+    "available_rooms": 95
+  },
+  {
+    "hotel_id": 2,
+    "name": "Beach Resort",
+    "location": "Cancun",
+    "rooms": "50", 
+    "available_rooms": 10
+  }
+]
