@@ -184,4 +184,3 @@ __pycache__/
 *.py[cod]
 .DS_Store
 .coverage
-Pruebas_y_Calidad/6.2/results/*
