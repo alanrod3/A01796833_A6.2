@@ -1,7 +1,14 @@
 import unittest
 import os
 import shutil
-from Pruebas_y_Calidad.6.2.source.hotel import Hotel
+import sys
+
+# Add the 'source' directory to the Python path dynamically
+current_dir = os.path.dirname(__file__)
+source_path = os.path.abspath(os.path.join(current_dir, "..", "source"))
+sys.path.append(source_path)
+
+from hotel import Hotel
 
 class TestHotel(unittest.TestCase):
     """Pruebas unitarias para la clase Hotel."""
