@@ -1,5 +1,9 @@
+"""
+Module for managing Hotel information and persistence.
+"""
 import json
 import os
+
 
 class Hotel:
     """Clase para gestionar la información de Hoteles."""
@@ -13,6 +17,7 @@ class Hotel:
 
     @classmethod
     def _load_data(cls):
+        """Loads hotel data from the JSON file."""
         if not os.path.exists(cls.FILE_PATH):
             return {}
         try:
@@ -24,6 +29,7 @@ class Hotel:
 
     @classmethod
     def _save_data(cls, data):
+        """Saves hotel data to the JSON file."""
         try:
             os.makedirs(os.path.dirname(cls.FILE_PATH), exist_ok=True)
             with open(cls.FILE_PATH, 'w', encoding='utf-8') as f:
@@ -33,12 +39,14 @@ class Hotel:
 
     @classmethod
     def create_hotel(cls, hotel_id, name, location, rooms):
+        """Creates a new hotel entry in the system."""
         data = cls._load_data()
         data[hotel_id] = {'name': name, 'location': location, 'rooms': rooms}
         cls._save_data(data)
 
     @classmethod
     def delete_hotel(cls, hotel_id):
+        """Deletes a hotel entry by its ID."""
         data = cls._load_data()
         if hotel_id in data:
             del data[hotel_id]
@@ -46,6 +54,7 @@ class Hotel:
 
     @classmethod
     def display_information(cls, hotel_id):
+        """Returns and prints hotel details."""
         data = cls._load_data()
         hotel = data.get(hotel_id)
         if hotel:
@@ -54,6 +63,7 @@ class Hotel:
 
     @classmethod
     def modify_information(cls, hotel_id, **kwargs):
+        """Modifies specific attributes of an existing hotel."""
         data = cls._load_data()
         if hotel_id in data:
             data[hotel_id].update(kwargs)
