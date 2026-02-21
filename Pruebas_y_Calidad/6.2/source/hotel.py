@@ -1,9 +1,7 @@
 """
 Module for managing Hotel information and persistence.
 """
-import json
-import os
-from .file_manager import load_data, save_data # Importa las utilidades
+from file_manager import load_data, save_data
 
 
 class Hotel:
@@ -11,18 +9,19 @@ class Hotel:
     FILE_PATH = '../data/hotels.json'
 
     def __init__(self, hotel_id, name, location, total_rooms):
+        """Initialize a hotel instance."""
         self.hotel_id = hotel_id
         self.name = name
         self.location = location
         self.total_rooms = total_rooms
 
     @classmethod
-    def _load_hotels(cls):
+    def _load_data(cls):
         """Usa la utilidad centralizada."""
         return load_data(cls.FILE_PATH)
 
     @classmethod
-    def _save_hotels(cls, hotels):
+    def _save_data(cls, hotels):
         """Usa la utilidad centralizada."""
         save_data(cls.FILE_PATH, hotels)
 

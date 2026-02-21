@@ -4,6 +4,7 @@ Utility module for file persistence operations.
 import json
 import os
 
+
 def load_data(file_path):
     """Loads data from a JSON file."""
     if not os.path.exists(file_path):
@@ -14,6 +15,7 @@ def load_data(file_path):
     except (json.JSONDecodeError, IOError) as e:
         print(f"Error loading {file_path}: {e}")
         return {}
+
 
 def save_data(file_path, data):
     """Saves data to a JSON file."""

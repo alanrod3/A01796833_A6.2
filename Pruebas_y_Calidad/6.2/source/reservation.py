@@ -1,9 +1,7 @@
 """
 Module for Reservation management.
 """
-import json
-import os
-from .file_manager import load_data, save_data
+from file_manager import load_data, save_data
 
 
 class Reservation:
