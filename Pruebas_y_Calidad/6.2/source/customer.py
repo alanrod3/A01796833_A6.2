@@ -1,18 +1,48 @@
+import json
+import os
+
 class Customer:
-    """Class representing a Customer abstraction."""
-    def __init__(self, customer_id, name, email):
-        self.customer_id = customer_id
-        self.name = name
-        self.email = email
+    """Clase para gestionar la información de Clientes."""
+    FILE_PATH = '../data/customers.json'
 
-    def create_customer(self):
-        pass
+    @classmethod
+    def _load_data(cls):
+        if not os.path.exists(cls.FILE_PATH):
+            return {}
+        try:
+            with open(cls.FILE_PATH, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except (json.JSONDecodeError, IOError) as e:
+            print(f"Error al cargar datos de clientes: {e}")
+            return {}
 
-    def delete_customer(self):
-        pass
+    @classmethod
+    def _save_data(cls, data):
+        os.makedirs(os.path.dirname(cls.FILE_PATH), exist_ok=True)
+        with open(cls.FILE_PATH, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=4)
 
-    def display_information(self):
-        pass
+    @classmethod
+    def create_customer(cls, customer_id, name, email):
+        data = cls._load_data()
+        data[customer_id] = {'name': name, 'email': email}
+        cls._save_data(data)
 
-    def modify_information(self):
-        pass
+    @classmethod
+    def delete_customer(cls, customer_id):
+        data = cls._load_data()
+        if customer_id in data:
+            del data[customer_id]
+            cls._save_data(data)
+
+    @classmethod
+    def display_information(cls, customer_id):
+        data = cls._load_data()
+        return data.get(customer_id)
+
+    @classmethod
+    def modify_information(cls, customer_id, **kwargs):
+        data = cls._load_data()
+        if customer_id in data:
+            data[customer_id].update(kwargs)
+            cls._save_data(data)
