@@ -3,6 +3,7 @@ Module for managing Hotel information and persistence.
 """
 import json
 import os
+from .file_manager import load_data, save_data # Importa las utilidades
 
 
 class Hotel:
@@ -16,29 +17,14 @@ class Hotel:
         self.total_rooms = total_rooms
 
     @classmethod
-    def _load_data(cls):
-        """
-        Retrieves all hotel records from the local JSON storage file.
-        Returns a dictionary of hotels or an empty dict if an error occurs.
-        """
-        if not os.path.exists(cls.FILE_PATH):
-            return {}
-        try:
-            with open(cls.FILE_PATH, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except (json.JSONDecodeError, IOError) as e:
-            print(f"Error al cargar datos de hoteles: {e}")
-            return {}
+    def _load_hotels(cls):
+        """Usa la utilidad centralizada."""
+        return load_data(cls.FILE_PATH)
 
     @classmethod
-    def _save_data(cls, data):
-        """Saves hotel data to the JSON file."""
-        try:
-            os.makedirs(os.path.dirname(cls.FILE_PATH), exist_ok=True)
-            with open(cls.FILE_PATH, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=4)
-        except IOError as e:
-            print(f"Error al guardar datos de hoteles: {e}")
+    def _save_hotels(cls, hotels):
+        """Usa la utilidad centralizada."""
+        save_data(cls.FILE_PATH, hotels)
 
     @classmethod
     def create_hotel(cls, hotel_id, name, location, rooms):

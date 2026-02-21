@@ -3,33 +3,28 @@ Module for Customer management.
 """
 import json
 import os
+from .file_manager import load_data, save_data
 
 
 class Customer:
     """Clase para gestionar la información de Clientes."""
     FILE_PATH = '../data/customers.json'
 
+    def __init__(self, customer_id, name, email):
+        """Initialize customer instance."""
+        self.customer_id = customer_id
+        self.name = name
+        self.email = email
+
     @classmethod
     def _load_data(cls):
-        """
-        Loads the list of registered customers from the persistent JSON file.
-        Includes error handling for missing or malformed data files.
-        """
-        if not os.path.exists(cls.FILE_PATH):
-            return {}
-        try:
-            with open(cls.FILE_PATH, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except (json.JSONDecodeError, IOError) as e:
-            print(f"Error al cargar datos de clientes: {e}")
-            return {}
+        """Usa la utilidad centralizada para cargar datos."""
+        return load_data(cls.FILE_PATH)
 
     @classmethod
     def _save_data(cls, data):
-        """Saves customer records to the JSON storage."""
-        os.makedirs(os.path.dirname(cls.FILE_PATH), exist_ok=True)
-        with open(cls.FILE_PATH, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4)
+        """Usa la utilidad centralizada para guardar datos."""
+        save_data(cls.FILE_PATH, data)
 
     @classmethod
     def create_customer(cls, customer_id, name, email):
