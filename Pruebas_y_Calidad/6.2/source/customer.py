@@ -11,7 +11,10 @@ class Customer:
 
     @classmethod
     def _load_data(cls):
-        """Loads customer records from the JSON storage."""
+        """
+        Loads the list of registered customers from the persistent JSON file.
+        Includes error handling for missing or malformed data files.
+        """
         if not os.path.exists(cls.FILE_PATH):
             return {}
         try:

@@ -17,7 +17,10 @@ class Hotel:
 
     @classmethod
     def _load_data(cls):
-        """Loads hotel data from the JSON file."""
+        """
+        Retrieves all hotel records from the local JSON storage file.
+        Returns a dictionary of hotels or an empty dict if an error occurs.
+        """
         if not os.path.exists(cls.FILE_PATH):
             return {}
         try:
